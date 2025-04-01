@@ -154,11 +154,11 @@ There's a lot of information displayed here, but if you dig through it you will 
 
 Commit hash: 00d808190419d4a6ee0886d616d568e206792b58
 Branch: main
-diff --git a/course/VulnerableAppTwo/keys/rsaexample.pem b/part2/VulnerableAppTwo/keys/rsaexample.pem
+diff --git a/course/VulnerableAppTwo/keys/rsaexample.pem b/course/VulnerableAppTwo/keys/rsaexample.pem
 new file mode 100644
 index 0000000..523c04d
 --- /dev/null
-+++ b/part2/VulnerableAppTwo/keys/rsaexample.pem
++++ b/course/VulnerableAppTwo/keys/rsaexample.pem
 @@ -0,0 +1,28 @@
 
 ```
@@ -211,7 +211,7 @@ Line: 41
 Column: 0
 SecurityTool: HorusecEngine
 Confidence: MEDIUM
-File: /github/workspace/part2/README.md
+File: /github/workspace/course/README.md
 Code: -----BEGIN PRIVATE KEY-----(.|\s)*?-----END PRIVATE KEY-----
 RuleID: HS-LEAKS-12
 Type: Vulnerability
