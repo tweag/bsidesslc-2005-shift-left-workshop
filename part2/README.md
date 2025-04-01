@@ -1,5 +1,5 @@
 
-# Part 2: Repository Scanning 
+# Repository Scanning 
 
 
 For this part of the workshop we've provide two vulnerable applications to work with.
@@ -13,7 +13,7 @@ One is Java based, and the second is JavaScript. These can be found under:
 We will start by looking at how secrets scanning tools can be used against these applications.
 
 
-## Module 4:Secrets scanning
+## Module 1:Secrets scanning
 
 We can use both GitHub native and CI/CD orientated tools to scan for secrets in our repository. In this part of the workshop we are going to look at three options:
 
@@ -52,9 +52,9 @@ Select the `New pattern` option and then use the following regex to test for AWS
 
 ```
 
-![Part 2 - Secrets Regex](./img/secretsregex.png "Secrets Regex")
+![Secrets Regex](./img/secretsregex.png "Secrets Regex")
 
-If you want to test the regex, you can do this by pasting in our dummy example key from `vuln.ini` in Part 1, and creating a dry run. 
+If you want to test the regex, you can do this by adding in a dummy key example.
 
 Select the `Publish pattern` button. Congrats, you have now added your own custom secrets detection.
 
@@ -68,7 +68,7 @@ If you select the PEM detection finding, you will find some helpful information 
 
 3. The detected location
  
-If you wish, you can remove the key from your forked repository and commit and push the change. Remember we can use the steps provided in `part1` to remove a file from Git. 
+If you wish, you can remove the key from your forked repository and commit and push the change.
 
 Re-visit this screen and then choose an option from the `Close as` drop down to close out the finding, for example `Revoked`
 
@@ -97,7 +97,7 @@ Here we can see it detected the JDBC connection in VulnerableApp (in addition to
 
 ```console
 
-test: part2/src/vulnerableapp.java#L16
+test: course/src/vulnerableapp.java#L16
 Found unverified JDBC result 🐷🔑
 
 ```
@@ -154,7 +154,7 @@ There's a lot of information displayed here, but if you dig through it you will 
 
 Commit hash: 00d808190419d4a6ee0886d616d568e206792b58
 Branch: main
-diff --git a/part2/VulnerableAppTwo/keys/rsaexample.pem b/part2/VulnerableAppTwo/keys/rsaexample.pem
+diff --git a/course/VulnerableAppTwo/keys/rsaexample.pem b/part2/VulnerableAppTwo/keys/rsaexample.pem
 new file mode 100644
 index 0000000..523c04d
 --- /dev/null
@@ -232,7 +232,7 @@ So we have figured out how to detect secrets leakage, but what about if we need 
 Let's now take a look at where we might store the credentials to avoid this happening again.
 
 
-## Module 5:Handling secrets in GitHub
+## Module 2:Handling secrets in GitHub
 
 We can avoid hard coding secrets into files through using a secrets manager. GitHub comes with one which can be accessed under 
 
@@ -247,7 +247,7 @@ Add a `Secret` - let's use something simple like `password` for this example. Of
 This secret should now be visibile:
 
 
-![Part 2 - Secret in GitHub](./img/reposecret.png "Secret in GitHub")
+![Secret in GitHub](./img/reposecret.png "Secret in GitHub")
 
 This secret can be used now in Actions pipelines, to avoid having to hard code it into a file.
 
@@ -316,7 +316,7 @@ If you return to the `Security overview` you will now see the `Security policy` 
 
 That was pretty simple! Let's move onto seeing how we can detect vulnerabilities.
 
-## Module 7:Vulnerable dependencies 
+## Module 3:Vulnerable dependencies 
 
 In the forked repository you will notice that a pull request has been created. This is because GitHub has detected we have a vulnerable dependency in our `pom.xml` and `package.json` files.
 
@@ -340,15 +340,15 @@ You can also try this with the JavaScript related dependency issues to fix the v
 Later in this workshop we will be looking at how you can extract the list of dependencies as an SBOM. Now we have fixed vulnerabilities in our repository, let's take a look at the application source code again.
 
 
-## Module 8:Static Analysis
+## Module 4:Static Analysis
 
-In Part 1 we ran CodeQL locally and executed a query against the codebase. This is great for doing local research and experimentation. But what if we want to scan changes to the code on the fly, and from multiple commiters? That's where CodeQL integrated into GitHub comes in handy. With this feature we can run CodeQL as a GitHub Action and scan any code that is a supported language pushed into the repository for vulnerabilities. 
+What if you want to scan your code in PRs for vulnerabilities? That's where CodeQL integrated into GitHub comes in handy. With this feature we can run CodeQL as a GitHub Action and scan any code that is a supported language pushed into the repository for vulnerabilities. 
 
 In this example we have enabled CodeQL by default in this repository. Let's take a look at the configuration.
 
 Go to the `Actions` tab in GitHub and you will see there are two CodeQL workflows.
 
-![Part 2 - Actions Workflows](./img/codeqlexample.png "Workflows")
+![Actions Workflows](./img/codeqlexample.png "Workflows")
 
 When setting up CodeQL you can manually add a file or configure it with default values directly in GitHub.
 
@@ -360,11 +360,11 @@ Let's see if CodeQL has detected any vulnerabilities. Navigate to:
 
 `Security > Code Scanning`
 
-Under this option you should see listings including from Part 1 or this course and Part 2. For example:
+Under this option you should see listings, for example:
 
 `Database query built from user-controlled sources`
 
-This was detected in `part2/VulnerableAppTwo/src/VulnerableAppTwo.js` on line `33`.
+This was detected in `course/VulnerableAppTwo/src/VulnerableAppTwo.js` on line `33`.
 
 If you open up the finding, you will see it has flagged:
 
@@ -395,7 +395,7 @@ You may also want to check the Action you created earlier that included Horusec.
 We've now seen how we can use SAST in GitHub, let's take a look at how we can prevent code being merged into branches unless a user has permission, or our SAST scans are successful.
 
 
-## Module 9:Branch protection rules
+## Module 5:Branch protection rules
 
 The `main` branch represents our mainline of development, and would likely be deployed to a production envrionment. It is therefore important that only certain users have permission to add code to it, and also that the code that is merged in is clean and free of security vulnerabilities. 
 
@@ -474,7 +474,7 @@ Within GitHub the SBOM can be found under `Insights > Dependency graph`.
 
 You'll notice on this screen that if you haven't fixed any of the security issues associated with dependencies these will be flagged.
 
-![Part 2 - SBOM and Dependencies](./img/sbom.png "SBOM and Dependencies")
+![SBOM and Dependencies](./img/sbom.png "SBOM and Dependencies")
 
 We can extract the SBOM by selecting the `Export SBOM` button on the top left. This will download a JSON file to your local machine.
 
@@ -482,11 +482,11 @@ Here's an example of what part of the file looks like
 
 ```json
 
-{"SPDXID":"SPDXRef-DOCUMENT","spdxVersion":"SPDX-2.3","creationInfo":{"created":"2024-03-20T18:26:13Z","creators":["Tool: GitHub.com-Dependency-Graph"]},"name":"com.github.tweag/dev-sec-ops-workshop","dataLicense":"CC0-1.0","documentDescribes":["SPDXRef-com.github.tweag-dev-sec-ops-workshop"]
+{"SPDXID":"SPDXRef-DOCUMENT","spdxVersion":"SPDX-2.3","creationInfo":{"created":"2024-03-20T18:26:13Z","creators":["Tool: GitHub.com-Dependency-Graph"]},"name":"com.github.tweag/bsidesslc-2005-shift-left-workshop","dataLicense":"CC0-1.0","documentDescribes":["SPDXRef-com.github.tweag-dev-sec-ops-workshop"]
 
 ...
 
-{"relationshipType":"DEPENDS_ON","spdxElementId":"SPDXRef-com.github.tweag-dev-sec-ops-workshop","relatedSpdxElement":"SPDXRef-actions-github-codeql-action-init-3.*.*"},{"relationshipType":"DEPENDS_ON","spdxElementId":"SPDXRef-com.github.tweag-dev-sec-ops-workshop","relatedSpdxElement":"SPDXRef-actions-trufflesecurity-trufflehog-main"}]}
+{"relationshipType":"DEPENDS_ON","spdxElementId":"SPDXRef-com.github.bsidesslc-2005-shift-left-workshop","relatedSpdxElement":"SPDXRef-actions-github-codeql-action-init-3.*.*"},{"relationshipType":"DEPENDS_ON","spdxElementId":"SPDXRef-com.github.bsidesslc-2005-shift-left-workshop","relatedSpdxElement":"SPDXRef-actions-trufflesecurity-trufflehog-main"}]}
 
 ```
 
@@ -520,9 +520,9 @@ Now you know how to generate an SBOM, you've reached the end of this module!
 
 ## Wrap-up 
 
-Congratulations you have completed Part 2 of this workshop.
+Congratulations you have completed this workshop.
 
-During this 4 hour session we have walked through many techniques, but we could only scratch the surface.
+During this 2 hour session we have walked through many techniques, but we could only scratch the surface.
 
 Armed with the content in this workshop you can now dig in further to everything from SAST to SBOMs.
 
