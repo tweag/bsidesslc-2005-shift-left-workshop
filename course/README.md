@@ -468,7 +468,7 @@ Well done, you've just completed a basic guide to how you can enforce checks on 
 
 Let's now take a look at Software Bill of Materials (SBOM). 
 
-## Module 10:SBOMs (Software Bill of Materials)
+## Module 7:SBOMs (Software Bill of Materials)
 
 Our final task is going to be to extract the SBOM from our project. An SBOM is a nested inventory of the components within an application. You can think of it as an ingrediants list of sorts. US government ageencies are now mandated to obtain an SBOM from their software vendors and internal engineering teams in order to validate the products security. So being familiar with the term and process is helpful. 
 
