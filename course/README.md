@@ -294,7 +294,7 @@ So that's a basic guide to how we can detect secrets from GitHub's native toolin
 
 We will now take a look at how we can detect security vulnerabilities across our code base. 
 
-## Module 6:Detecting secutity vulnerabilities 
+## Module 3:Detecting secutity vulnerabilities 
 
 GitHub supports a number of mechanisms for handling security vulnerabilities including:
 
@@ -318,7 +318,7 @@ If you return to the `Security overview` you will now see the `Security policy` 
 
 That was pretty simple! Let's move onto seeing how we can detect vulnerabilities.
 
-## Module 3:Vulnerable dependencies 
+## Module 4:Vulnerable dependencies 
 
 In the forked repository you will notice that a pull request has been created. This is because GitHub has detected we have a vulnerable dependency in our `pom.xml` and `package.json` files.
 
@@ -342,7 +342,7 @@ You can also try this with the JavaScript related dependency issues to fix the v
 Later in this workshop we will be looking at how you can extract the list of dependencies as an SBOM. Now we have fixed vulnerabilities in our repository, let's take a look at the application source code again.
 
 
-## Module 4:Static Analysis
+## Module 5:Static Analysis
 
 What if you want to scan your code in PRs for vulnerabilities? That's where CodeQL integrated into GitHub comes in handy. With this feature we can run CodeQL as a GitHub Action and scan any code that is a supported language pushed into the repository for vulnerabilities. 
 
@@ -397,7 +397,7 @@ You may also want to check the Action you created earlier that included Horusec.
 We've now seen how we can use SAST in GitHub, let's take a look at how we can prevent code being merged into branches unless a user has permission, or our SAST scans are successful.
 
 
-## Module 5:Branch protection rules
+## Module 6:Branch protection rules
 
 The `main` branch represents our mainline of development, and would likely be deployed to a production envrionment. It is therefore important that only certain users have permission to add code to it, and also that the code that is merged in is clean and free of security vulnerabilities. 
 
