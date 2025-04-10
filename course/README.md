@@ -32,9 +32,11 @@ Configuration of Secrets scanning in GitHub, including the configuration of cust
 
 ![Part 2 - Secrets scanning](./img/secretsconfig.png "Secrets configuration")
 
-We've already added the regex for detecting the private key. But let's see how this works. 
+We're going to add the regex for detecting the private key. So, let's see how this works. 
 
-Select the `PEM` detection rule and open it up. Under here is the `secret format` 
+We will  create a new rule, the `PEM` detection rule and open it up. 
+
+Once created, under this is the `secret format` 
 
 ```console
 -----BEGIN PRIVATE KEY-----(.|\s)*?-----END PRIVATE KEY-----
@@ -44,7 +46,7 @@ This regex will detect files such as our `.pem` key and then add an alert to the
 
 You can create a new pattern here to detect other secret types. Hit the back button and go back to the previous screen.
 
-Select the `New pattern` option and then use the following regex to test for AWS API keys. You may remember we did something similar in Part 1:
+Select the `New pattern` option and then use the following regex to test for AWS API keys.
 
 ```console
 
